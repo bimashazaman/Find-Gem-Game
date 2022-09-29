@@ -51,11 +51,14 @@ print(f"You have {turns} turns to find the gem.")
 
 # Generating a random number between 1 and 100.
 answer = randint(1, 100)
-
 guess = int(input("Make a guess how deeper it is: "))
 
 
 
+# A while loop that checks if the guess is not equal to the answer. If it is not, it subtracts 1 from
+# the turns variable. Then it checks if the turns variable is equal to 0. If it is, it prints out a
+# message and breaks out of the loop. If it is not, it prints out the number of turns left and asks
+# the user for a guess. Then it calls the `check_guess` function.
 while guess != answer:
     turns -= 1
     if turns == 0:
@@ -64,20 +67,3 @@ while guess != answer:
     print(f"You have {turns} turns left.")
     guess = int(input("Make a guess: "))
     check_guess(guess, answer)
-
-
-
-    
-    
-    
-    
-
-
-
-
-
-
-
-
-
-
