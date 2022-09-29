@@ -12,6 +12,9 @@ print(logo)
 # Importing the randint function from the random module.
 from random import randint
 
+EASY_LEVEL_TURNS = 10
+HARD_LEVEL_TURNS = 5
+
 def check_guess(guess, answer):
     """
     It takes in a guess and an answer, and prints out a message depending on whether the guess is higher
@@ -26,24 +29,44 @@ def check_guess(guess, answer):
         print("You Digged too shallow")
     else:
         print(f"You got it! 💎💎💎💎💎💎💎💎💎 You are rich now! Go buy a Tesla!")
+        
+def set_difficulty():
+    """
+    It asks the user for the difficulty level and returns it
+    """
+    level = input("Choose a difficulty. Type 'easy' or 'hard': ")
+    if level == "easy":
+        return EASY_LEVEL_TURNS
+    else:
+        return HARD_LEVEL_TURNS      
 
 # Printing out the instructions for the game.
 print("Find a gem 💎 in the cave!")
 print("It's in between 1km and 100km away under the ground.")
 
+# Calling the function `set_difficulty` and assigning the return value to the variable `turns`.
+turns = set_difficulty()
+
+print(f"You have {turns} turns to find the gem.")
 
 # Generating a random number between 1 and 100.
 answer = randint(1, 100)
 
-
-
 guess = int(input("Make a guess how deeper it is: "))
 
-# A while loop. It will keep running until the guess is equal to the answer.
+
+
 while guess != answer:
+    turns -= 1
+    if turns == 0:
+        print("You ran out of turns, you lose.")
+        break
+    print(f"You have {turns} turns left.")
+    guess = int(input("Make a guess: "))
     check_guess(guess, answer)
-    guess = int(input("Make a guess how deeper it is: "))
-    
+
+
+
     
     
     
